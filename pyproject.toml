@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "dominantcolors"
+version = "0.1.0"
+description = "script to generate a palette of dominant colors from an image"
+authors = ["pablonoya <pablonoya18@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fast-colorthief = "^0.0.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+dominantcolors = "dominantcolors.cli:main"
