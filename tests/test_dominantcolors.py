@@ -2,15 +2,15 @@ import unittest
 from unittest.mock import patch
 from io import StringIO
 
-from cli import main as cli_main
+from dominantcolors.cli import main as cli_main
 
-from dominantcolors import color_extractor
+from dominantcolors.dominantcolors import color_extractor
 
 
 class TestDominantColors(unittest.TestCase):
     """Test dominantcolors.py"""
 
-    def test_arguments(self):
+    def test_incorrect_cli_arguments(self):
         """Test that expected usage is printed"""
         captured_output = StringIO()
         with patch("sys.stdout", new=captured_output):
