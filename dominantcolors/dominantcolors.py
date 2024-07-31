@@ -1,10 +1,10 @@
 from colorsys import hls_to_rgb, rgb_to_hls
 from math import isclose
 
+import click
 import numpy as np
 from fast_colorthief import get_palette
 from PIL import Image
-
 
 BG_WIDGET_COLOR = (35, 42, 49)
 BG_TOPBAR_COLOR = (48, 57, 66)
@@ -98,7 +98,7 @@ def preprocess_image(image):
     return image_arr
 
 
-def color_extractor(image_path):
+def color_extractor(image_path, target_contrast):
     """Obtain the dominant colors from an image and modify them to generate a palette
     with a suitable contrast ratio for use in the popup and radial progressbar music widgets.
 
@@ -122,20 +122,16 @@ def color_extractor(image_path):
 
     # get dominant colors from image
     most_dominant_color, *candidate_colors = get_palette(image_array, 3, quality=2)
-    print(to_hex(most_dominant_color))
+    click.echo(to_hex(most_dominant_color))
 
     # get ui components color
     bg_darkened = blend_colors(most_dominant_color, BG_WIDGET_COLOR, alpha=208 / 255)
-    ui_components_color = get_highest_contrast_color(bg_darkened, candidate_colors)
+    ui_components_color = get_highest_contrast_color(
+        bg_darkened, candidate_colors, target_contrast=target_contrast
+    )
 
-    print(to_hex(ui_components_color))
+    click.echo(to_hex(ui_components_color))
 
     # get mediabar progress border color
-    mediabar_progress_color = get_highest_contrast_color(
-        BG_TOPBAR_COLOR, [most_dominant_color]
-    )
-    print(to_hex(mediabar_progress_color))
-
-
-if __name__ == "__main__":
-    color_extractor("")
+    mediabar_progress_color = get_highest_contrast_color(BG_TOPBAR_COLOR, [most_dominant_color])
+    click.echo(to_hex(mediabar_progress_color))

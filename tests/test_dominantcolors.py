@@ -1,9 +1,8 @@
 import unittest
-from unittest.mock import patch
 from io import StringIO
+from unittest.mock import patch
 
-from dominantcolors.cli import main as cli_main
-
+from dominantcolors.cli import cli as cli_main
 from dominantcolors.dominantcolors import color_extractor
 
 
