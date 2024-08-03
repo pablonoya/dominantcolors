@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dominantcolors"
-version = "0.2.0"
+version = "0.3.0"
 description = "script to generate a palette of dominant colors from an image"
 authors = ["pablonoya <pablonoya18@gmail.com>"]
 readme = "README.md"
